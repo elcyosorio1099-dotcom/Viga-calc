@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vigas CA">
+<meta name="theme-color" content="#1B3A5C">
+<title>Calculadora de Vigas — NBR 6118</title>
+
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAADc0lEQVR4nO3dMY4URwCG0cVy4DtwDGeIoxDbGRmnIHMGKYkPQsqdHIxkWcAua76q7qqe96KNprv+/jQSK2hevHz15gF+1i9n3wB7ExCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiOTXUR/05Y/Poz6KY/z+8XX/EN9AJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERDLs7RzH+OqFElNfCXLVa4210zfQt68jGfKCkru61nDbBPTYpjO2vuq1ZtgjoKfXHLv1Va81yQYBPWfHUVtf9VrzbBAQKxMQiYBIBESyQUDP+a3aqN+8XfVa82wQ0MOPdhy78lWvNckeAT08vuaMla96rRm2Cejhe5vOW/mq1xruxctXb4Z80EZn5sZ/dcD5BEQiIBIBkSwX0N+/fTr7Fpa22j7D/hQ2xLu3f95+eP/Xh3PvZE0L7rPQN9C/63z1Mzdr7rNKQN8uss5GK1h2nyUCemyLRTY63cr7nB/Q0yussNG5Ft/n5ICec/7TNzrR+vucGdDzT36fDW2xz2kB/d8z31tDu+xzTkA/d9r7aWijfU4IqJzzHhraa5+jA+onvHZD2+1zaECjznbVhnbc57iAxp7qeg1tus9BAc04z5Ua2nefIwKad5JrNLT1PtMDmn2G3RvafZ+5AR3zdPdt6AL7TAzoyOe6Y0PX2GdWQMc/0b0ausw+UwI661nu0tCV9hkf0LlPcf2GLrbP4IBWeH4r3MNjVri3sfcwMqAV1rlZ507+a527GngnwwJaZ50b9/O0Ufez1r8LYzvn/6V6tiYgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIi+Qd/vNqDkl8p7QAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAADc0lEQVR4nO3dMY4URwCG0cVy4DtwDGeIoxDbGRmnIHMGKYkPQsqdHIxkWcAua76q7qqe96KNprv+/jQSK2hevHz15gF+1i9n3wB7ExCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiOTXUR/05Y/Poz6KY/z+8XX/EN9AJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERDLs7RzH+OqFElNfCXLVa4210zfQt68jGfKCkru61nDbBPTYpjO2vuq1ZtgjoKfXHLv1Va81yQYBPWfHUVtf9VrzbBAQKxMQiYBIBESyQUDP+a3aqN+8XfVa82wQ0MOPdhy78lWvNckeAT08vuaMla96rRm2Cejhe5vOW/mq1xruxctXb4Z80EZn5sZ/dcD5BEQiIBIBkSwX0N+/fTr7Fpa22j7D/hQ2xLu3f95+eP/Xh3PvZE0L7rPQN9C/63z1Mzdr7rNKQN8uss5GK1h2nyUCemyLRTY63cr7nB/Q0yussNG5Ft/n5ICec/7TNzrR+vucGdDzT36fDW2xz2kB/d8z31tDu+xzTkA/d9r7aWijfU4IqJzzHhraa5+jA+onvHZD2+1zaECjznbVhnbc57iAxp7qeg1tus9BAc04z5Ua2nefIwKad5JrNLT1PtMDmn2G3RvafZ+5AR3zdPdt6AL7TAzoyOe6Y0PX2GdWQMc/0b0ausw+UwI661nu0tCV9hkf0LlPcf2GLrbP4IBWeH4r3MNjVri3sfcwMqAV1rlZ507+a527GngnwwJaZ50b9/O0Ufez1r8LYzvn/6V6tiYgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIi+Qd/vNqDkl8p7QAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" sizes="512x512" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAALNUlEQVR4nO3dPZIdRRaA0RaBwR60DDwFS5HNeHizCrzxBheHheCyJ4yeaDRqqfT6vfrJzO8cS4GVdfNWfK9CEeLd+w8fnwDo+e7qAwBwDQEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAICo768+wKP++vnPq48AdP34209XH+F+vgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAor6/+gAc4sfffnr9H//6+c/zTzIm89lmPhHv3n/4ePUZHmIpP/XF9/a17NDMZ5v53OHGoY1JABZxxxamRmc+28znblMHwN8BrOC+FZx6cd/EfLaZT5YvgLnt8hIuPEPz2WY+j5s6hL4AJrbX5k29wRvMZ5v5IAAAUQIwq31/dq33I858tpkPTwIwqSPet5XeYfPZZj48EwCAKAGYz3E/tdb4EWc+28yHFwIAECUAAFECMJmjv7Jn/4o3n23mw6cEACBKAACiBAAgSgAAogQAIEoAAKIEYDJH/9vrs//b7uazzXz4lAAARAkAQJQAzOe4r+w1vt/NZ5v58EIAAKIEYEpH/NRa6eeb+WwzH54JwKz2fd/We3vNZ5v58CQAAFkCMLG9fnat+vPNfLaZD+/ef/h49RkeYvmeHvhH2CPTM59t5vOIqf8XCL4AVnDfe9h5e81nm/lk+QJYyo0/RrJDM59t5nOHqb8ABGBNX1xKs3phPtvM53YCcCVLCVxo6gD4OwCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBKAi/3xw+9XHwEuY/+vNf3/D2Bq//7lX89/+PU//732JHA++385XwCXedn+z/4MBfZ/BAJwjdcb7x2gw/4PQgAu8LVd9w5QYP/HIQBn295y7wBrs/9DEYBT3bLf3gFWZf9HIwDnuX2zvQOsx/4PSABO8tad9g6wEvs/JgE4w33b7B1gDfZ/WAJwuEf22DvA7Oz/yATgWI9vsHeAedn/wQnAgfbaXe8AM7L/4xOAo+y7td4B5mL/pyAAhzhiX70DzML+z0IA9nfcpnoHGJ/9n4gA7OzoHfUOMDL7PxcB2NM52+kdYEz2fzoCsJsz99I7wGjs/4wEYB/nb6R3gHHY/0kJwA6u2kXvACOw//MSgEddu4XeAa5l/6cmAA8ZYf9GOANNI+zeCGeYlwDcb5zNG+ckdIyzdeOcZDoCcKfRdm6087C20fZttPPMQgDuMea2jXkq1jPmpo15qsEJwJuNvGcjn401jLxjI59tTALwNuNv2PgnZF7jb9f4JxyKALzBLLs1yzmZyyx7Ncs5RyAAt5prq+Y6LeOba6PmOu2FBOAmM+7TjGdmTDPu0oxnPp8AfNu8mzTvyRnHvFs078lPIwDfMPsOzX5+rjX7/sx+/qMJwJY1tmeNp+B8a2zOGk9xEAH4qpX2ZqVn4Rwr7cxKz7IvAfiy9TZmvSfiOOtty3pPtAsB+IJVd2XV52Jfq+7Jqs/1CAH43NpbsvbT8bi1N2Ttp7uDAPyfwn4UnpH7FHaj8Iy3E4B/dDaj86TcrrMVnSf9JgH4n9pO1J6XbbV9qD3v1wjA01N1G5pPzWvNTWg+9WcEIL0H5WfnWXkHys/+rB4AG2ACZW4/PoF0AOJ3/8Icmtz7s/IcugEo3/prplHjxj+VnUY0ANn73mAmHe76teZMigFo3vQtTKbALX9NcDK5AATv+E3MZ23ud1ttPq0A1G73Pqa0Kjd7i9SUQgFI3euDzGo97vR2nVlVAtC50b2Y2Erc5ltFJpYIQOQud2dua3CP9ynMbf0AFG7xOKY3Ozf4iOWnt3gAlr+/E5jhvNzd49ae4coBWPvmzmSSM3Jre1l4kssGYOE7u4R5zsV97WvVea4ZgFVv61qmOgs3dYQlp7pgAJa8p0GY7fjc0XHWm+1qAVjvhkZjwiNzO0dbbMJLBWCxuxmWOY/JvZxjpTmvE4CVbmV8pj0aN3KmZaa9SACWuY+JmPk43MX51pj5CgFY4yZmZPIjcAtXWWDy0wdggTuYmvlfy/yvNfv8373/8PHqMwBwgem/AAC4jwAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABE/Q1uKRuB2tkW1AAAAABJRU5ErkJggg==">
+
+<script>
+const manifestData = {
+  name: "Calculadora de Vigas",
+  short_name: "Vigas CA",
+  description: "Cálculo de vigas de concreto armado - NBR 6118",
+  start_url: ".",
+  display: "standalone",
+  background_color: "#1B3A5C",
+  theme_color: "#1B3A5C",
+  orientation: "portrait",
+  icons: [
+    {src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAIAAADajyQQAAABJUlEQVR4nO2aMQ7CMAxFKWLgDhyDDXEUZtjYOAUbG6wsHISVOzEgVRU0jhM7gR/+m6oS/P0UoroS3WK1mbTI9NsNlIJiaFAMDYqhQTE0KIYGxdCgGBoUQ4NiaFAMDYqhQTE0mhWbCZ89tvdqfWSzvKxH7ze7YxRDg2JoUAwNiqFBMTSkWVFDP6pFB0vlSn1BGdOODQfQ0DCatFJfMEqzP0WKjTE8BvKRUK7UF4zSCf+l+scXzdv8amimRpa0YyEO+93r4ng6Z0TWyUresT7p7boElqw0sc/q5dyMWQliobol3OxZWjG5oq+bS5ZKTFPLy80rKy6m79ju5pgVEUvt1eLmmyWJ5XX5I9/KeUBDwOkeDYqhQTE0KIYGxdCgGBoUQ4NiaDwBFXRWOz1D4AMAAAAASUVORK5CYII=",sizes:"72x72",type:"image/png"},
+    {src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAIAAABt+uBvAAABrUlEQVR4nO3cMU7DQBBAUYIouAPHoEMchRo6Ok5Blw5aGg5Cy50okKIIy/mz3pldQP9XKbLe8ZOxxCKxu7q5O7P1zmcP8NsTCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCBIIEggSCLqIfOnz/qN6jlldv96e/oJPECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQFDru2NDhGKHpqGTkqmAlT9DxIQseuExZFS8faDllZO6Rq5ryHQQJBOUDLd+UkXfnyFVNlTxBx1PGJx65Kt4u8p8X/KuGrZYG9H75lnWplLLmCf2IYU+PD98fnvcv/VfrL3GehCfoMM2Pz7PKnacXaDnBXKP0ebqA1vaeZVQxz3ag07uONyqaZyNQZL+RRnXzbAGK7zTGqHSeZqDWPaqNqudpA9p2t3VGA+ZpAOq5zwqjMfNEgfrvMNdo2DwhoKx7+4vXyfld7B/ncQckECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBAkECQQJBD0BdSzd+OzVKE6AAAAAElFTkSuQmCC",sizes:"96x96",type:"image/png"},
+    {src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACK0lEQVR4nO3dIVLDUBRGYcpUsAeWgWO6FDQ4HKvA1YHFsBAse0J0pgImNC/v3Xtu2nNUBaQ/+RpKJ4LN7f3DlXFd0wMuPQHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIDbtn7D9+NXxI5z6u59N/+LvQLgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAK75nvCQjndNO+8wVzvOgjat/8Rn1I/aecxqxzl5zKn8FQSXCjD10mh6yRQ8Tk9eAXACwKUCTL25tb7pVTtOT14BcNl/hh6q9vf72M8BTe/hDMB55+eANSUAXDjA581H9FOEFr2/+T2gqZfnp8OD1/1b3LPElbA/8Ao4rv/1eC3l7I8C+Lt4XQZp+0MAprauxSBz/3iA/1fWN0jePxhgzr7KBvn7RwLMX1bTANk/DKB1UzUDav8YgGVr6hiA+wcA9OyoYMDu7wXoX8Aa4Pu7AEadO8qgwv7lAGPPWr5Bkf0LASLOV6ZBnf1LAOLOVI5Bqf3NANHn6NKOH3s/wE7mLUk4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeB+AFpklCMijCl/AAAAAElFTkSuQmCC",sizes:"128x128",type:"image/png"},
+    {src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAIAAABoJHXvAAACcklEQVR4nO3aMU7DQBBAUYIouEOOQRdxlNTQ0XEKunTQ0nAQWu5EESlCIId4PTs7P/m/SmN7Z19MEuHVerO9Mk7Xoxdg8xIMlmCwBIMlGCzBYAkGSzBYgsESDJZgsASDJRgswWAJBkswWILBEgyWYLAEgyUYLMFgCQZLMFiCwRIMlmCwBIMlGCzBYAkGSzBYgsESDJZgsASDJRgswWAJBkswWILBEgyWYLAEgyUYLMFgCQZLMFiCwRIMlmCwBIMlGKybtsO+Hj5j13GZ3b3dzz3EOwyWYLAEgyUYLMFgCQZLMFiCwRIMlmCwBIMlGCzBYAkGSzBYgsESDJZgsASDJRgswWAJBqvxMbfYDk97RT09V/+Eza3Wm23DYeEbEXXy+if89+TH808irJFgU++vhvcd5YTL8w6DJRiskWBTH93NH+n1T7g87zBYg7/W76v/s6nT77CGLy8lwC42f4edf4LBEgxWKtjH7Xvm5dLKnKvxS0dDz0+P+xcvu9ecK+aUPFfSHXaY6tdrevlzZYD9neQ8zIbM1R1saga62ai5+oIdXz3XbOBcHcFOWTfRbOxcvcBOXzHLbPhcXcDmrpViVmGueLC2VdY3KzJXMNiS9VU2qzNXJNjyldU0KzVXGFjUmqqZVZsrBix2l+uYFZwrAKzH/lYwqznXUrB+OzvWrOxci8B67+kos8pztYPl7Ga+WfG5GsEy99Fr/SzvP84Wkg/hwBIMlmCwBIMlGCzBYAkGSzBYgsESDJZgsASDJRgswWAJBkswWILBEgyWYLAEgyUYLMFgCQZLMFiCwRIMlmCwBIMlGCzBYAkGSzBYgsESDNY3EzuekynfT8sAAAAASUVORK5CYII=",sizes:"144x144",type:"image/png"},
+    {src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAACYCAIAAACXoLd2AAAClElEQVR4nO3avU0DQRBAYYwI6MFlkFmUQgwZGVWQkUFKQiGk9ERgyYGR//Zmdmcf70UkvpvZz0a2dKv15uHK5u969AAWk5CQhIQkJCQhIQkJSUhIQkISEpKQkISEJCQkISEJCUlISEJCEhKSkJCEhCQkJCEhCQlJSEhCQhISkpCQhIQkJCQhIQkJSUhIQkISEpKQkISEJCQkISEJCUlISEJCEhKSkJCEhCQkJCEhCQlJSEhCQhISkpCQhIQkJCQhIQkJSUhIQkK6aX7lz+N34By26+7jvuFVfiIhCQlJSEhCQhISkpCQhIQkJCQhIQkJSUhIQkISEpKQkISEJCQkISEJCUlISEJCEhKSkJCEhCQkpPYHlMPbPZgb++hzxmWTRl3Sar15aHtlxrnEXj/jskmjnrzFyfzXCmk85KE3YNsbM/WySaOGNB7SQhIS0njIQ98UFn6DyLhs0qghjYe0kEr8/Njm78i9i19UIUjb5u/If52QkISENADy6/az/00713/H9i87bb08P23/eH1773nfng3Zsesncrfh3t+kRu3YD/LvVjzLgTt2gjy0D8ly7I49II9vwrAcvmM65Dk7zG5ZYcdcyPOnn9eyyI6JkJfOPaNlnR2zINsmnsuy1I4pkEtmncWy2o7xkMunrG9ZcMdgyKj5KlvW3DESMnaympZldwyDzDj3apaVd4yBzDvxOpbFdwyAzD7rCpb1d1wK2eeUx1pOseMiyJ7nO8pylh3bIfufrHc8Uu9HPSwpn6KDJCQkISEJCUlISEJCEhKSkJCEhCQkJCEhCQlJSEhCQhISkpCQhIQkJCQhIQkJSUhIQkISEpKQkISEJCQkISEJCUlISEJCEhKSkJCEhCQkJCEhCQnpFxiAo8sKlSJlAAAAAElFTkSuQmCC",sizes:"152x152",type:"image/png"},
+    {src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAADc0lEQVR4nO3dMY4URwCG0cVy4DtwDGeIoxDbGRmnIHMGKYkPQsqdHIxkWcAua76q7qqe96KNprv+/jQSK2hevHz15gF+1i9n3wB7ExCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiOTXUR/05Y/Poz6KY/z+8XX/EN9AJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERDLs7RzH+OqFElNfCXLVa4210zfQt68jGfKCkru61nDbBPTYpjO2vuq1ZtgjoKfXHLv1Va81yQYBPWfHUVtf9VrzbBAQKxMQiYBIBESyQUDP+a3aqN+8XfVa82wQ0MOPdhy78lWvNckeAT08vuaMla96rRm2Cejhe5vOW/mq1xruxctXb4Z80EZn5sZ/dcD5BEQiIBIBkSwX0N+/fTr7Fpa22j7D/hQ2xLu3f95+eP/Xh3PvZE0L7rPQN9C/63z1Mzdr7rNKQN8uss5GK1h2nyUCemyLRTY63cr7nB/Q0yussNG5Ft/n5ICec/7TNzrR+vucGdDzT36fDW2xz2kB/d8z31tDu+xzTkA/d9r7aWijfU4IqJzzHhraa5+jA+onvHZD2+1zaECjznbVhnbc57iAxp7qeg1tus9BAc04z5Ua2nefIwKad5JrNLT1PtMDmn2G3RvafZ+5AR3zdPdt6AL7TAzoyOe6Y0PX2GdWQMc/0b0ausw+UwI661nu0tCV9hkf0LlPcf2GLrbP4IBWeH4r3MNjVri3sfcwMqAV1rlZ507+a527GngnwwJaZ50b9/O0Ufez1r8LYzvn/6V6tiYgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIi+Qd/vNqDkl8p7QAAAABJRU5ErkJggg==",sizes:"192x192",type:"image/png"},
+    {src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAIAAAArpSLoAAAH/klEQVR4nO3dPY5URxRA4cEi8B5YBhliKcQ4c+ZVOHNmUideCCl7cjAWDPPT0z+v+1S9+r4IWcyo6tbVaYQ05s27D5/uAAq/1AcA1iVAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyLytD/DYt89f6yPAnr3/8rE+wg/+BARkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkHlbH2Dn3n/5+PQ/fvv89fYn2ZZ7sYk37z58qs/wk9089rOr/NCkN3Wv2b1601sSoO2d9MAT3de97qa610uGCpC/A9rYqa871DYc4F7n/X4OE6Atnbed4++0e13+VTxLgDZzyV6OvNPute3X8pAAARkB2sblH4ljfqi61/W+A3cCBIQEaANbfRiO9qHqXrf5PisTICAjQEBGgICMAAEZAQIyAgRkBGgDW/2E9Gg/ae1et/k+KxMgICNA27j8w3DMj1P3ut534E6AgJAAbeaSj8SRP07da9uv5SEB2tJ5ezn+NrvX5V/FswRoY6du5yzb7F7n/X4O8z+lv5a9/isL7jW7oX6IX4Cua6//zpR7zUuADtnZY8NohgqQvwMCMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQE6BX//vpPfQQmZn8OG+5nwYbyx++/3f/iz7/+bk/CjOzPq/wJ6EXft+fRr+EY9ucYAvS8pxtjhzie/TmSAD3jpV2xQxzD/hxPgB47vCV2iMPsz0kE6CfH7Icd4iX251QC9MPxm2GHeMr+nEGA/nfqTtghHrI/5xGgu7tzt8EOcc/+nE2ALtoDO4T9ucTqAbp8A+zQyuzPhZYO0FZvv/gOLcv+XG7dAG376ivv0JrszyYWDdA13nvZHVqQ/dnKigG63kuvuUOrsT8bWi5A137jBXdoKfZnW2sF6Davu9oOrcP+bG6hAN3yXZfaoUXYn2tYJUC3f9F1dmgF9udKlghQ9ZaL7NDu2Z/r2X+A2ldcYYf2zf5c1c4DNML7jXAGzjPC241whuvZc4DGeblxTsLxxnm1cU6yud0GaLQ3G+08HDbae412nq3sM0BjvtaYp+KpMV9qzFNdaIcBGvmdRj4b90Z+o5HPdp69BWj8Fxr/hCsb/3XGP+FJdhWgWd5mlnOuZpZ3meWcx9hPgOZ6lblOu4K5XmSu0x6wkwDN+B4znnmvZnyLGc/81B4CNO9LzHvyPZn3FeY9+XfTB2j2N5j9/LObff6zn3/uAM0+/Xv7uMWM9jH5qW8xcYCmnvsje7rLLPY083nvMmuA5p34S/Z3o5Htb9qT3mjKAE0661ft9V6j2eucZ7zXfAGaccrH2/ftRrDvCU93u8kCNN18z7DCHSsrzHauO84UoLkme4l1bnpL60x1optOE6CJZrqJ1e57bavNc5b7zhGgWaa5rTVvfQ1rTnKKW08QoCnmeCUr330rK89w/LuPHqDxJ3htJnAJ0xt8AkMHaPDZ3Yw5nMfc7o08h3EDNPLUbs80TmViDw07jUEDNOy8QmZyPLN6asyZjBigMSc1ApM5him9ZMDJDBegAWc0FPM5zHwOG20+b959+FSfAVjUcH8CAtYhQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGQECMgIEJARICAjQEBGgICMAAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMgIEZAQIyAgQkBEgICNAQEaAgIwAARkBAjICBGT+A1b/nJKYZQ57AAAAAElFTkSuQmCC",sizes:"384x384",type:"image/png"},
+    {src:"data:image/png;base64,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",sizes:"512x512",type:"image/png"}
+  ]
+};
+const blob = new Blob([JSON.stringify(manifestData)], {type: "application/json"});
+const manifestURL = URL.createObjectURL(blob);
+document.addEventListener("DOMContentLoaded", () => {
+  const link = document.createElement("link");
+  link.rel = "manifest";
+  link.href = manifestURL;
+  document.head.appendChild(link);
+});
+</script>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, 'Segoe UI', system-ui, sans-serif; background: #F0F4F8; min-height: 100vh; }
+
+:root {
+  --primary: #1B3A5C;
+  --accent: #E8A020;
+  --bg: #F0F4F8;
+  --card: #FFFFFF;
+  --text: #1A1A2E;
+  --muted: #6B7A99;
+  --success: #2E7D52;
+  --danger: #C0392B;
+}
+
+#app { max-width: 480px; margin: 0 auto; padding-bottom: 32px; }
+
+header {
+  background: var(--primary); color: #fff;
+  padding: 16px 20px 0; position: sticky; top: 0; z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.header-title { font-size: 17px; font-weight: 700; }
+.header-sub { font-size: 11px; color: #90A8C3; margin-top: 2px; padding-bottom: 12px; }
+
+.tabs { display: flex; background: var(--primary); border-top: 1px solid rgba(255,255,255,0.1); }
+.tab {
+  flex: 1; padding: 10px 4px; font-size: 11px; font-weight: 700;
+  color: #90A8C3; background: transparent; border: none; cursor: pointer;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  border-bottom: 3px solid transparent;
+}
+.tab.active { color: var(--accent); border-bottom: 3px solid var(--accent); }
+
+.section { padding: 14px 14px 0; display: none; }
+.section.active { display: block; }
+
+.card {
+  background: var(--card); border-radius: 12px;
+  padding: 14px; margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.card-title {
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+}
+
+.row { display: flex; gap: 10px; margin-bottom: 10px; }
+.field { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+label { font-size: 11px; color: var(--muted); font-weight: 600; }
+input, select {
+  border: 1.5px solid #DDE3EE; border-radius: 8px;
+  padding: 9px 10px; font-size: 14px; color: var(--text);
+  background: #FAFBFD; width: 100%; font-family: inherit;
+  -webkit-appearance: none; appearance: none;
+}
+select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7A99' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
+
+.btn-calc {
+  background: var(--primary); color: #fff; border: none;
+  border-radius: 10px; padding: 14px; font-size: 15px; font-weight: 700;
+  width: 100%; cursor: pointer; margin-top: 4px; letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(27,58,92,0.3); font-family: inherit;
+}
+.btn-reset {
+  background: transparent; color: var(--muted);
+  border: 1.5px solid #DDE3EE; border-radius: 10px;
+  padding: 10px; font-size: 13px; font-weight: 600;
+  width: 100%; cursor: pointer; margin-top: 8px; font-family: inherit;
+}
+
+.result-card {
+  background: var(--primary); border-radius: 12px;
+  padding: 14px; margin-bottom: 10px; color: #fff;
+}
+.result-title { font-size: 11px; color: #90A8C3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.result-item { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 10px 12px; }
+.result-item .rl { font-size: 10px; color: #90A8C3; margin-bottom: 2px; }
+.result-item .rv { font-size: 18px; font-weight: 700; }
+.result-item .ru { font-size: 10px; color: #90A8C3; }
+
+.detail-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid #F0F4F8; font-size: 13px;
+}
+.detail-row:last-of-type { border-bottom: none; }
+.dl { color: var(--muted); }
+.dv { font-weight: 600; color: var(--text); }
+.dv.highlight { color: var(--primary); font-weight: 800; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  border-radius: 20px; padding: 4px 10px; font-size: 12px; font-weight: 700; margin-top: 8px;
+}
+.badge.ok { background: rgba(46,125,82,0.12); color: var(--success); }
+.badge.fail { background: rgba(192,57,43,0.12); color: var(--danger); }
+
+.warn-box { background: #FFF8E6; border: 1px solid #F0C040; border-radius: 8px; padding: 10px 12px; font-size: 12px; color: #7A5800; margin-top: 10px; }
+.info-box { background: #E8F4FD; border: 1px solid #90C8F0; border-radius: 8px; padding: 10px 12px; font-size: 12px; color: #0A4A7A; margin-top: 10px; }
+
+.formula-box { background: #F8F9FA; border-radius: 8px; padding: 12px; margin-bottom: 10px; border-left: 4px solid var(--accent); }
+.formula-title { font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
+.formula-text { font-size: 13px; color: var(--text); font-family: monospace; line-height: 1.8; white-space: pre; }
+
+.install-banner {
+  background: linear-gradient(135deg, #E8A020, #c8841a);
+  color: #fff; border-radius: 12px; padding: 14px 16px;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 2px 8px rgba(232,160,32,0.3);
+}
+.install-icon { font-size: 28px; }
+.install-text h3 { font-size: 14px; font-weight: 700; }
+.install-text p { font-size: 11px; opacity: 0.9; margin-top: 2px; }
+.install-btn {
+  margin-left: auto; background: #fff; color: #c8841a;
+  border: none; border-radius: 8px; padding: 8px 14px;
+  font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  font-family: inherit;
+}
+
+#install-section { padding: 14px; }
+.step-card {
+  background: var(--card); border-radius: 12px; padding: 14px;
+  margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.step-num {
+  background: var(--primary); color: #fff; border-radius: 50%;
+  width: 28px; height: 28px; display: flex; align-items: center;
+  justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0;
+}
+.step-content h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.step-content p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.os-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+.os-tab {
+  flex: 1; padding: 8px; border-radius: 8px; border: 1.5px solid #DDE3EE;
+  background: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+  color: var(--muted); font-family: inherit;
+}
+.os-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="header-title">🏗️ Calculadora de Vigas</div>
+    <div class="header-sub">Concreto Armado · NBR 6118</div>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab(0)">Dados</button>
+      <button class="tab" onclick="showTab(1)">Resultados</button>
+      <button class="tab" onclick="showTab(2)">Fórmulas</button>
+      <button class="tab" onclick="showTab(3)">📲 Instalar</button>
+    </div>
+  </header>
+
+  <!-- TAB 0: DADOS -->
+  <div class="section active" id="tab-0">
+    <div class="card">
+      <div class="card-title">📐 Geometria</div>
+      <div class="row">
+        <div class="field"><label>Vão L (cm)</label><input type="number" id="span" value="500" inputmode="decimal"></div>
+        <div class="field"><label>Tipo de Viga</label>
+          <select id="vigaType">
+            <option value="biapoiada">Biapoiada</option>
+            <option value="engastada">Engastada</option>
+            <option value="balanco">Balanço</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Base b (cm)</label><input type="number" id="b" value="25" inputmode="decimal"></div>
+        <div class="field"><label>Altura h (cm)</label><input type="number" id="h" value="50" inputmode="decimal"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Cobrimento (cm)</label><input type="number" id="cNom" value="3" inputmode="decimal"></div>
+        <div class="field"><label>φ estribo (mm)</label>
+          <select id="phiEst">
+            <option value="5">5</option>
+            <option value="6.3" selected>6.3</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field"><label>φ long. (mm)</label>
+          <select id="phiLong">
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="12.5">12.5</option>
+            <option value="16" selected>16</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🧱 Materiais</div>
+      <div class="row">
+        <div class="field"><label>fck (MPa)</label>
+          <select id="fck">
+            <option value="20">20</option>
+            <option value="25" selected>25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+        <div class="field"><label>Tipo de aço</label>
+          <select id="steelType">
+            <option value="CA-50">CA-50</option>
+            <option value="CA-60">CA-60</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">⚡ Carregamento (kN/m)</div>
+      <div class="row">
+        <div class="field"><label>Carga permanente g</label><input type="number" id="g" value="20" inputmode="decimal"></div>
+        <div class="field"><label>Carga variável q</label><input type="number" id="q" value="10" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div id="error-msg" class="warn-box" style="display:none"></div>
+    <button class="btn-calc" onclick="calcular()">CALCULAR VIGA</button>
+    <button class="btn-reset" onclick="resetar()" id="reset-btn" style="display:none">Limpar Resultados</button>
+  </div>
+
+  <!-- TAB 1: RESULTADOS -->
+  <div class="section" id="tab-1">
+    <div id="no-result" style="text-align:center;padding:40px 20px;color:var(--muted)">
+      <div style="font-size:40px;margin-bottom:12px">📊</div>
+      <div style="font-size:14px;font-weight:600">Sem resultados ainda</div>
+      <div style="font-size:12px;margin-top:4px">Preencha os dados e calcule</div>
+      <button class="btn-calc" style="margin-top:20px;width:auto;padding:12px 24px" onclick="showTab(0)">Ir para Dados →</button>
+    </div>
+    <div id="result-content" style="display:none"></div>
+  </div>
+
+  <!-- TAB 2: FÓRMULAS -->
+  <div class="section" id="tab-2">
+    <div class="card">
+      <div class="card-title">⚡ Carregamento</div>
+      <div class="formula-box">
+        <div class="formula-title">Combinação última normal</div>
+        <div class="formula-text">fd = 1,4·g + 1,4·q</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Esforços — viga biapoiada</div>
+        <div class="formula-text">Md = fd·L² / 8
+Vd = fd·L / 2</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📏 Flexão (ELU)</div>
+      <div class="formula-box">
+        <div class="formula-title">Resistências de cálculo</div>
+        <div class="formula-text">fcd = fck / 1,4
+fyd = fyk / 1,15</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Altura útil</div>
+        <div class="formula-text">d = h − c − φest − φlong/2</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Dimensionamento</div>
+        <div class="formula-text">μ = Md / (b·d²·fcd)
+x/d = (1 − √(1−2μ)) / 0,8
+z = d·(1 − 0,4·x/d)
+As = Md / (fyd·z)</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">✂️ Cisalhamento</div>
+      <div class="formula-box">
+        <div class="formula-title">Resistência sem armadura</div>
+        <div class="formula-text">VRd1 = τRd·k·(1,2+40·ρl)·b·d
+τRd = 0,25·fcd / γc</div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-title">Armadura transversal</div>
+        <div class="formula-text">Asw/s = Vd / (fyd·d·cotgθ)
+cotgθ = 1,0 a 3,0</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📉 Flecha (ELS)</div>
+      <div class="formula-box">
+        <div class="formula-title">Flecha imediata simplificada</div>
+        <div class="formula-text">δ = 5·fk·L⁴ / (384·Ecs·Ief)
+Ecs = 5600·√fck  (MPa)
+δ ≤ L/250</div>
+      </div>
+    </div>
+    <div class="info-box">📚 Referência: NBR 6118:2023 — Projeto de estruturas de concreto</div>
+  </div>
+
+  <!-- TAB 3: INSTALAR -->
+  <div class="section" id="tab-3">
+    <div id="install-section">
+      <div class="install-banner">
+        <div class="install-icon">🏗️</div>
+        <div class="install-text">
+          <h3>Adicionar à tela inicial</h3>
+          <p>Use como app, sem precisar de internet</p>
+        </div>
+        <button class="install-btn" id="pwa-install-btn" style="display:none" onclick="installPWA()">Instalar</button>
+      </div>
+
+      <div class="os-tabs">
+        <button class="os-tab active" id="btn-android" onclick="switchOS('android')">🤖 Android</button>
+        <button class="os-tab" id="btn-ios" onclick="switchOS('ios')">🍎 iPhone</button>
+      </div>
+
+      <div id="steps-android">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Salve o arquivo HTML</h3>
+            <p>Baixe o arquivo <b>viga-nbr6118.html</b> para o seu celular (via Downloads ou compartilhamento).</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Abra no Chrome</h3>
+            <p>Toque nos três pontos ⋮ no canto superior direito do Chrome.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Adicionar à tela inicial</h3>
+            <p>Toque em <b>"Adicionar à tela inicial"</b> e confirme. O ícone 🏗️ aparecerá na tela.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Pronto!</h3>
+            <p>Abra pelo ícone como qualquer app. Funciona sem internet.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="steps-ios" style="display:none">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Salve e abra no Safari</h3>
+            <p>Baixe o arquivo HTML e abra-o no <b>Safari</b> (obrigatório — não funciona no Chrome no iOS).</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Toque em Compartilhar</h3>
+            <p>Toque no ícone de compartilhar ↑ na barra inferior do Safari.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Adicionar à Tela de Início</h3>
+            <p>Role a lista e toque em <b>"Adicionar à Tela de Início"</b>. Confirme o nome.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Pronto!</h3>
+            <p>O ícone 🏗️ aparece na tela inicial. Abre em tela cheia como um app nativo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">💡 O app funciona completamente offline após instalado. Nenhum dado é enviado para servidores.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Tabs ──────────────────────────────────────────────────────
+function showTab(i) {
+  document.querySelectorAll('.section').forEach((s,j) => s.classList.toggle('active', i===j));
+  document.querySelectorAll('.tab').forEach((t,j) => t.classList.toggle('active', i===j));
+}
+
+function switchOS(os) {
+  document.getElementById('steps-android').style.display = os==='android' ? 'block' : 'none';
+  document.getElementById('steps-ios').style.display = os==='ios' ? 'block' : 'none';
+  document.getElementById('btn-android').classList.toggle('active', os==='android');
+  document.getElementById('btn-ios').classList.toggle('active', os==='ios');
+}
+
+// ── PWA Install ───────────────────────────────────────────────
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('pwa-install-btn').style.display = 'block';
+});
+function installPWA() {
+  if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt = null; }
+}
+
+// ── Calc ──────────────────────────────────────────────────────
+const STEEL = { 'CA-50': { fyk: 500, muLim: 0.295 }, 'CA-60': { fyk: 600, muLim: 0.272 } };
+
+function n(v, d=2) { return Number(v).toFixed(d); }
+
+function calcular() {
+  const G = id => document.getElementById(id);
+  const span = +G('span').value, b = +G('b').value, h = +G('h').value;
+  const fck = +G('fck').value, st = G('steelType').value;
+  const g = +G('g').value, q = +G('q').value;
+  const phiL = +G('phiLong').value/1000, phiE = +G('phiEst').value/1000;
+  const cNom = +G('cNom').value/100, vt = G('vigaType').value;
+
+  const err = document.getElementById('error-msg');
+  if (!span||!b||!h||!g||!q) { err.textContent='⚠️ Preencha todos os campos.'; err.style.display='block'; return; }
+  err.style.display='none';
+
+  const L=span/100, bm=b/100, hm=h/100;
+  const {fyk, muLim} = STEEL[st];
+  const fcd = fck*1000/1.4, fyd = fyk*1000/1.15;
+  const Ecs = 5600*Math.sqrt(fck)*1000;
+  const d = hm - cNom - phiE - phiL/2;
+  const fd = 1.4*g + 1.4*q;
+
+  let Md, Vd;
+  if (vt==='biapoiada') { Md=fd*L*L/8; Vd=fd*L/2; }
+  else if (vt==='engastada') { Md=fd*L*L/12; Vd=fd*L/2; }
+  else { Md=fd*L*L/2; Vd=fd*L; }
+
+  const mu = Md/(bm*d*d*fcd);
+  const xd = (1-Math.sqrt(Math.max(0,1-2*mu)))/0.8;
+  const z = d*(1-0.4*xd);
+  const As = Md/(fyd*z)*10000;
+  const rhoMin = fck<=25?0.0015:fck<=30?0.00164:0.00179;
+  const AsMin = rhoMin*bm*d*10000;
+  const AsAdot = Math.max(As, AsMin);
+
+  const tauRd = 0.25*(fck/1000)/1.4*1000;
+  const rhoL = AsAdot/10000/(bm*d);
+  const VRd1 = tauRd*1.0*(1.2+40*rhoL)*bm*d;
+  const needsShear = Vd > VRd1;
+  const AswS = needsShear ? Vd/(fyd*d*2.5)*10000 : null;
+
+  const Ief = bm*Math.pow(hm,3)/12;
+  const fk = g+q;
+  let delta;
+  if (vt==='biapoiada') delta=(5*fk*Math.pow(L,4))/(384*Ecs*Ief)*100;
+  else if (vt==='engastada') delta=(fk*Math.pow(L,4))/(384*Ecs*Ief)*100;
+  else delta=(fk*Math.pow(L,4))/(8*Ecs*Ief)*100;
+  const deltaLim = L*100/250;
+
+  const okMu = mu <= muLim, okF = delta <= deltaLim;
+
+  document.getElementById('no-result').style.display='none';
+  document.getElementById('result-content').style.display='block';
+  document.getElementById('reset-btn').style.display='block';
+
+  document.getElementById('result-content').innerHTML = `
+    <div class="result-card">
+      <div class="result-title">⚡ ESFORÇOS SOLICITANTES</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="rl">Carga fd</div><div class="rv">${n(fd)}</div><div class="ru">kN/m</div></div>
+        <div class="result-item"><div class="rl">Momento Md</div><div class="rv">${n(Md)}</div><div class="ru">kN·m</div></div>
+        <div class="result-item"><div class="rl">Cortante Vd</div><div class="rv">${n(Vd)}</div><div class="ru">kN</div></div>
+        <div class="result-item"><div class="rl">Altura útil d</div><div class="rv">${n(d*100)}</div><div class="ru">cm</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📏 Flexão (ELU)</div>
+      <div class="detail-row"><span class="dl">Momento reduzido μ</span><span class="dv">${n(mu,4)}</span></div>
+      <div class="detail-row"><span class="dl">μ limite</span><span class="dv">${n(muLim,3)}</span></div>
+      <div class="detail-row"><span class="dl">Linha neutra x</span><span class="dv">${n(xd*d*100)} cm</span></div>
+      <div class="detail-row"><span class="dl">Braço de alavanca z</span><span class="dv">${n(z*100)} cm</span></div>
+      <div class="detail-row"><span class="dl">As calculada</span><span class="dv">${n(As)} cm²</span></div>
+      <div class="detail-row"><span class="dl">As mínima</span><span class="dv">${n(AsMin)} cm²</span></div>
+      <div class="detail-row"><span class="dl">As adotada</span><span class="dv highlight">${n(AsAdot)} cm²</span></div>
+      <span class="badge ${okMu?'ok':'fail'}">${okMu?'✓ Seção simples OK':'✗ Necessita armadura dupla'}</span>
+    </div>
+    <div class="card">
+      <div class="card-title">✂️ Cisalhamento (ELU)</div>
+      <div class="detail-row"><span class="dl">VRd1 sem armadura</span><span class="dv">${n(VRd1)} kN</span></div>
+      <div class="detail-row"><span class="dl">Vd solicitante</span><span class="dv">${n(Vd)} kN</span></div>
+      ${needsShear?`<div class="detail-row"><span class="dl">Asw/s (estribos)</span><span class="dv highlight">${n(AswS)} cm²/m</span></div>`:''}
+      <span class="badge ${needsShear?'fail':'ok'}">${needsShear?'✗ Estribos de cálculo necessários':'✓ Estribos construtivos OK'}</span>
+    </div>
+    <div class="card">
+      <div class="card-title">📉 Flecha (ELS)</div>
+      <div class="detail-row"><span class="dl">Flecha estimada δ</span><span class="dv">${n(delta,3)} cm</span></div>
+      <div class="detail-row"><span class="dl">Limite L/250</span><span class="dv">${n(deltaLim,3)} cm</span></div>
+      <span class="badge ${okF?'ok':'fail'}">${okF?'✓ Flecha dentro do limite':'✗ Flecha excede o limite'}</span>
+      ${!okF?'<div class="warn-box">⚠️ Considere aumentar a altura da seção ou usar fck maior.</div>':''}
+    </div>
+    <div class="info-box">💡 Resultados baseados em NBR 6118:2023. Verificação final por engenheiro responsável.</div>
+  `;
+  showTab(1);
+}
+
+function resetar() {
+  document.getElementById('no-result').style.display='block';
+  document.getElementById('result-content').style.display='none';
+  document.getElementById('reset-btn').style.display='none';
+  showTab(0);
+}
+
+// Service Worker para offline
+if ('serviceWorker' in navigator) {
+  const swCode = `
+    const CACHE = 'viga-v1';
+    self.addEventListener('install', e => e.waitUntil(caches.open(CACHE)));
+    self.addEventListener('fetch', e => e.respondWith(
+      caches.match(e.request).then(r => r || fetch(e.request).catch(() => new Response('')))
+    ));
+  `;
+  const blob = new Blob([swCode], {type:'application/javascript'});
+  navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
+}
+</script>
+</body>
+</html>
